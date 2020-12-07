@@ -1,6 +1,4 @@
-import {
-  CloudServerOutlined,
-} from "@ant-design/icons";
+import { CloudServerOutlined } from "@ant-design/icons";
 import React, { lazy } from "react";
 import { Redirect } from "react-router-dom";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
@@ -19,7 +17,7 @@ export const routeItems: IRouteItem[] = [
     exact: true,
     hide: true,
     name: "首页",
-    children: <Redirect to="/cdn-manage/user-manage" />,
+    children: <Redirect to="/dashboard" />,
   },
   {
     value: "/dashboard",
