@@ -8,7 +8,7 @@ import style from "./index.module.less";
 interface UserInfoProps {}
 
 const UserInfo: React.FC<UserInfoProps> = () => {
-  const { isValidating: isLogin, data: userData } = useSWR("/userinfo");
+  const { isValidating: isLogin, data: userData } = useSWR("/antd/userinfo");
 
   // 展示关于信息
   const onShowAbout = useCallback(() => {

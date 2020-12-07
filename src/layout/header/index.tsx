@@ -22,7 +22,7 @@ const routes = [
 ];
 
 const Header: React.FC<HeaderProps> = () => {
-  const { isValidating: isLogin } = useSWR("/userinfo");
+  const { isValidating: isLogin } = useSWR("/antd/userinfo");
   const [globaleState] = GlobalState.useContainer();
 
   /** 面包屑生成工具 */

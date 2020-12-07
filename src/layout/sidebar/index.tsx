@@ -16,7 +16,7 @@ interface SiderBarProps extends RouteComponentProps {
 }
 
 const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
-  const { isValidating: isLogin } = useSWR("/userinfo");
+  const { isValidating: isLogin } = useSWR("/antd/userinfo");
 
   const [, dispatch] = GlobalState.useContainer();
 

@@ -16,7 +16,7 @@ const { Content, Header: LayoutHeader } = Layout;
 
 function App() {
   // 在这里获取用户的登录信息
-  const { data, isValidating } = useSWR("/userinfo", {
+  const { data, isValidating } = useSWR("/antd/userinfo", {
     dedupingInterval: 10 * 60 * 1000, // 用户信息保存10分钟缓存
   });
 
