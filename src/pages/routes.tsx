@@ -1,4 +1,8 @@
-import { CloudServerOutlined } from "@ant-design/icons";
+import {
+  CloudServerOutlined,
+  InsertRowAboveOutlined,
+  TableOutlined,
+} from "@ant-design/icons";
 import React, { lazy } from "react";
 import { Redirect } from "react-router-dom";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
@@ -24,6 +28,19 @@ export const routeItems: IRouteItem[] = [
     name: "Dashboard",
     icon: <CloudServerOutlined />,
     component: loader("dashboard"),
+  },
+  {
+    value: "/tables",
+    name: "表格",
+    icon: <TableOutlined />,
+    routes: [
+      {
+        value: "basic",
+        name: "基础表格",
+        icon: <InsertRowAboveOutlined />,
+        component: loader("tables/basic"),
+      },
+    ],
   },
   {
     hide: true,
