@@ -30,6 +30,19 @@ export const routeItems: IRouteItem[] = [
     component: loader("dashboard"),
   },
   {
+    value: "/value-pool",
+    name: "字段库",
+    icon: <TableOutlined />,
+    routes: [
+      {
+        value: "project-manage",
+        name: "项目管理",
+        icon: <InsertRowAboveOutlined />,
+        component: loader("valuePool/projects"),
+      },
+    ],
+  },
+  {
     value: "/tables",
     name: "表格",
     icon: <TableOutlined />,
