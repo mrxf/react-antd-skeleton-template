@@ -1,4 +1,4 @@
-import { Card, Table } from "antd";
+import { Card } from "antd";
 import React from "react";
 import useSWR from "swr";
 
