@@ -11,11 +11,11 @@ import { concatPath } from "src/utils/flatRoutes";
 
 const { SubMenu } = Menu;
 
-interface SiderBarProps extends RouteComponentProps {
+interface TopNavProps extends RouteComponentProps {
   routeItems: IRouteItem[];
 }
 
-const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
+const TopNav: React.FC<TopNavProps> = ({ routeItems, history }) => {
   const { isValidating: isLogin } = useSWR("/antd/userinfo");
 
   const [, dispatch] = GlobalState.useContainer();
@@ -88,4 +88,4 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
   );
 };
 
-export default withRouter(SiderBar);
+export default withRouter(TopNav);

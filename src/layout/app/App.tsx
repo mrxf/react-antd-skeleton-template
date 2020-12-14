@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import "./App.less";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { Suspense } from "react";
-import SiderBar from "../sidebar";
+import TopNav from "../topNav";
 import Header from "../header";
 import { QueryParamProvider } from "use-query-params";
 import useSWR from "swr";
@@ -28,7 +28,7 @@ function App() {
         <QueryParamProvider ReactRouterRoute={Route}>
           <Layout>
             <LayoutHeader className="topNav">
-              <SiderBar routeItems={routeItems} />
+              <TopNav routeItems={routeItems} />
             </LayoutHeader>
             <Header />
             <Content className="app-content">
