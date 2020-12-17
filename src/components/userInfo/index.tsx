@@ -1,13 +1,16 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, Menu, Modal, Skeleton } from "antd";
+import classNames from "classnames";
 import { get } from "lodash";
 import React, { useCallback, useMemo } from "react";
 import useSWR from "swr";
 import style from "./index.module.less";
 
-interface UserInfoProps {}
+interface UserInfoProps {
+  theme?: "light" | "dark";
+}
 
-const UserInfo: React.FC<UserInfoProps> = () => {
+const UserInfo: React.FC<UserInfoProps> = ({ theme = "dark" }) => {
   const { isValidating: isLogin, data: userData } = useSWR("/antd/userinfo");
 
   // 展示关于信息
@@ -55,7 +58,12 @@ const UserInfo: React.FC<UserInfoProps> = () => {
     } else {
       return (
         <Dropdown overlay={infoMenus}>
-          <div className={style.username}>
+          <div
+            className={classNames(style.username, {
+              [style.__dark]: theme === "dark",
+              [style.__light]: theme === "light",
+            })}
+          >
             <Avatar
               src={get(userData, "data.data.avatar")}
               size="small"
