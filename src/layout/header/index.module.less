@@ -1,3 +1,16 @@
 .header {
   background-color: white;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  display: flex;
+  min-height: 64px;
+  padding: 0 24px;
+  justify-content: space-between;
+  align-items: center;
+
+  :global {
+    // 修复面包屑自带的margin数据
+    .ant-breadcrumb {
+      margin: 0;
+    }
+  }
 }

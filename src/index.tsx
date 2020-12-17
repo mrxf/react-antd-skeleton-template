@@ -8,6 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 import { http } from "./utils/http";
 import zhCN from "antd/lib/locale/zh_CN";
 import { UseRequestProvider } from "ahooks";
+import GlobalStateProvider from "./components/globalState";
+import { getRouteArrayByPath } from "./utils/getRouteByPath";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +25,13 @@ ReactDOM.render(
         }}
       >
         <ConfigProvider locale={zhCN}>
-          <App />
+          <GlobalStateProvider
+            value={{
+              breadCrumbRoute: getRouteArrayByPath(window.location.pathname),
+            }}
+          >
+            <App />
+          </GlobalStateProvider>
         </ConfigProvider>
       </UseRequestProvider>
     </SWRConfig>
