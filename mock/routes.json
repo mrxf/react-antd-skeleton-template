@@ -1,3 +1,4 @@
 {
-  "/game/list*": "/gameList"
+  "/game/list*": "/gameList",
+  "/company/list*": "/companyList"
 }
