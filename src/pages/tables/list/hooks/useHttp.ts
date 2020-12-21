@@ -1,7 +1,6 @@
 import { http } from "src/utils/http";
 import { AxiosRequestConfig } from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { method } from "lodash";
 
 interface IConfig {
   onSuccess?: (response: any) => void;
