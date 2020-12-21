@@ -1,6 +1,7 @@
 import {
   CloudServerOutlined,
   InsertRowAboveOutlined,
+  ProfileOutlined,
   TableOutlined,
 } from "@ant-design/icons";
 import React, { lazy } from "react";
@@ -39,6 +40,12 @@ export const routeItems: IRouteItem[] = [
         name: "基础表格",
         icon: <InsertRowAboveOutlined />,
         component: loader("tables/basic"),
+      },
+      {
+        value: "list",
+        name: "列表",
+        icon: <ProfileOutlined />,
+        component: loader("tables/list"),
       },
     ],
   },
