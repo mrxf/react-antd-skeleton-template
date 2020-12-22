@@ -57,7 +57,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
           mode="inline"
         >
           {routeItems.map((menu) => {
-            // 两种隐藏一级侧边栏的情况
+            // 隐藏一级侧边栏的情况
             if (menu.hide) {
               return undefined;
             } else if (
