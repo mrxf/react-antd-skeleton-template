@@ -1,6 +1,8 @@
 import {
   CloudServerOutlined,
   InsertRowAboveOutlined,
+  NumberOutlined,
+  ProjectOutlined,
   TableOutlined,
 } from "@ant-design/icons";
 import React, { lazy } from "react";
@@ -18,6 +20,7 @@ const loader = (path: string) =>
 export const routeItems: IRouteItem[] = [
   {
     value: "/",
+    path: "/",
     exact: true,
     hide: true,
     name: "首页",
@@ -25,19 +28,37 @@ export const routeItems: IRouteItem[] = [
   },
   {
     value: "/dashboard",
+    path: "/dashboard",
     name: "Dashboard",
     icon: <CloudServerOutlined />,
     component: loader("dashboard"),
   },
   {
     value: "/tables",
+    path: "/tables",
     name: "表格",
     icon: <TableOutlined />,
     routes: [
       {
         value: "basic",
         name: "基础表格",
+        path: "/tables/basic",
         icon: <InsertRowAboveOutlined />,
+        component: loader("tables/basic"),
+      },
+      {
+        value: "advance",
+        path: "/tables/advance",
+        name: "进阶表格",
+        icon: <NumberOutlined />,
+        component: loader("tables/basic"),
+      },
+      {
+        value: "list",
+        path: "/tables/list/:id",
+        name: "列表",
+        hide: true,
+        icon: <ProjectOutlined />,
         component: loader("tables/basic"),
       },
     ],
@@ -45,6 +66,7 @@ export const routeItems: IRouteItem[] = [
   {
     hide: true,
     value: "/**",
+    path: "/**",
     component: NotFound,
     name: "404页面未找到",
   },

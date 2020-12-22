@@ -5,7 +5,7 @@ import useSWR from "swr";
 import MenuSkeleton from "./components/menuSkeleton";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom";
-import { concatPath } from "src/utils/flatRoutes";
+import { getParentByPath } from "src/utils/getParentByPath";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -19,10 +19,9 @@ const getItem = (item: IRouteItem, prefix = "/") => {
   if (item.hide) {
     return undefined;
   }
-  const path = concatPath(item.value, prefix);
   return (
-    <Menu.Item key={path}>
-      <NavLink to={path}>
+    <Menu.Item key={item.path as string}>
+      <NavLink to={item.path as string}>
         {item.icon}
         <span className="nav-text">{item.name}</span>
       </NavLink>
@@ -34,7 +33,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
   const { isValidating: isLogin } = useSWR("/antd/userinfo");
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const { pathname } = history.location;
-  const openKey = "/" + pathname.split("/")[1]; // 数字是根据路由前面有多少个默认的key处理的，如果前面有更多，则+1
+  const parentItem = getParentByPath(pathname, routeItems);
 
   return (
     <Sider
@@ -52,8 +51,8 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
       ) : (
         <Menu
           theme="dark"
-          selectedKeys={[history.location.pathname]}
-          defaultOpenKeys={[openKey]}
+          defaultSelectedKeys={[pathname]}
+          defaultOpenKeys={[(parentItem?.path as string | undefined) ?? ""]}
           mode="inline"
         >
           {routeItems.map((menu) => {
@@ -66,7 +65,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
             ) {
               return (
                 <SubMenu
-                  key={menu.value}
+                  key={menu.path as string}
                   title={
                     <>
                       {menu.icon}
@@ -74,7 +73,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
                     </>
                   }
                 >
-                  {menu?.routes.map((v) => getItem(v, menu.value))}
+                  {menu?.routes.map((v) => getItem(v))}
                 </SubMenu>
               );
             }
