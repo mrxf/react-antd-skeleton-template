@@ -21,7 +21,7 @@ const TopNav: React.FC<TopNavProps> = ({ routeItems, history }) => {
   const [, dispatch] = GlobalState.useContainer();
 
   const getItem = (item: IRouteItem, prefix = "/") => {
-    // 两种隐藏二级侧边栏的情况
+    // 隐藏二级侧边栏的情况
     if (item.hide) {
       return undefined;
     }
