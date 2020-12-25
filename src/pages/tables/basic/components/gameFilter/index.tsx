@@ -57,7 +57,7 @@ const GameFilter: React.FC<GameFilterProps> = ({
   const onFormReset = useCallback(() => {
     form.resetFields();
     onReset?.();
-  }, [onSearch, form]);
+  }, [onReset, form]);
 
   /** 初始化搜索数据 */
   useEffect(() => {
