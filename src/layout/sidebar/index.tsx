@@ -4,7 +4,7 @@ import style from "./index.module.less";
 import useSWR from "swr";
 import MenuSkeleton from "./components/menuSkeleton";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { GlobalState } from "src/components/globalState";
 import { getParentByPath } from "src/utils/getParentByPath";
 import { getMenuItem } from "src/utils/getMenuItem";
@@ -32,7 +32,11 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
       onCollapse={setCollapsed}
     >
       <div className={style.logo}>
-        {!collapsed ? <h1>{process.env.REACT_APP_SITE_NAME}</h1> : undefined}
+        {!collapsed ? (
+          <Link to="/">
+            <h1>{process.env.REACT_APP_SITE_NAME}</h1>
+          </Link>
+        ) : undefined}
       </div>
       {isLogin ? (
         <MenuSkeleton />

@@ -3,7 +3,7 @@ import style from "./index.module.less";
 import useSWR from "swr";
 import MenuSkeleton from "./components/menuSkeleton";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import UserInfo from "src/components/userInfo";
 import MenuList from "../menuList";
 interface TopNavProps extends RouteComponentProps {
@@ -16,7 +16,9 @@ const TopNav: React.FC<TopNavProps> = ({ routeItems, history }) => {
   return (
     <div className={style.topNav}>
       <div className={style.logo}>
-        <h1>{process.env.REACT_APP_SITE_NAME}</h1>
+        <Link to="/">
+          <h1>{process.env.REACT_APP_SITE_NAME}</h1>
+        </Link>
       </div>
       {isLogin ? (
         <MenuSkeleton />
