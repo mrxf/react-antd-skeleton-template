@@ -20,6 +20,8 @@
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "craco-less": "^1.17.1",
+    "echarts": "^5.0.0",
+    "echarts-for-react": "^2.0.16",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.20",
     "path-to-regexp": "^6.2.0",
