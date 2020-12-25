@@ -26,7 +26,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
   return (
     <Sider
       className={`${style.side} full-skeleton`}
-      width={255}
+      width={235}
       collapsible
       collapsed={collapsed}
       onCollapse={setCollapsed}
