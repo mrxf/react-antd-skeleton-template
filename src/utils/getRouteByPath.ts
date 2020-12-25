@@ -26,14 +26,17 @@ export const getRouteArrayByPath = (
           pathToRegexp(item.path).test(pathname)
         ) > -1
       ) {
+        // 如果含有子路由，并且子路由中含有当前path
+
+        // 添加父级路由和子路由进入面包屑中
         routeArray.push({
           breadcrumbName: currentItem.name,
           path: currentItem.path,
         });
+
         const childItem = currentItem.routes.find((item) =>
           pathToRegexp(item.path).test(pathname)
         );
-
         routeArray.push({
           breadcrumbName: childItem!.name,
           path: childItem!.path,
