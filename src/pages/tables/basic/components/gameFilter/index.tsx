@@ -23,6 +23,7 @@ export interface IResult {
 
 interface GameFilterProps {
   onSearch?: (result: IResult) => void;
+  onReset?: () => void;
   initialValues?: IResult;
 }
 
@@ -31,7 +32,11 @@ const layout = {
   wrapperCol: { span: 18 },
 };
 
-const GameFilter: React.FC<GameFilterProps> = ({ onSearch, initialValues }) => {
+const GameFilter: React.FC<GameFilterProps> = ({
+  onSearch,
+  onReset,
+  initialValues,
+}) => {
   const shoudInitForm = useRef<boolean>(true);
   const [form] = Form.useForm();
   const { data: companyRes, isValidating: isValidatingCompany } = useSWR(
@@ -49,9 +54,9 @@ const GameFilter: React.FC<GameFilterProps> = ({ onSearch, initialValues }) => {
   }, [onSearch, form]);
 
   /** 重置表单也通知数据 */
-  const onReset = useCallback(() => {
+  const onFormReset = useCallback(() => {
     form.resetFields();
-    onSearch?.({});
+    onReset?.();
   }, [onSearch, form]);
 
   /** 初始化搜索数据 */
@@ -117,7 +122,7 @@ const GameFilter: React.FC<GameFilterProps> = ({ onSearch, initialValues }) => {
             <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>
               查询
             </Button>
-            <Button htmlType="reset" onClick={onReset}>
+            <Button htmlType="reset" onClick={onFormReset}>
               重置
             </Button>
           </Space>
