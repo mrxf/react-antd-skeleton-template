@@ -1,23 +1,24 @@
 import { Menu } from "antd";
 import React from "react";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { GlobalState } from "src/components/globalState";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
 import { getMenuItem } from "src/utils/getMenuItem";
 
 const { SubMenu } = Menu;
 
-interface MenuListProps {
+interface MenuListProps extends RouteComponentProps {
   className?: string;
   routeItems: IRouteItem[];
 }
 
-const MenuList: React.FC<MenuListProps> = ({ className, routeItems }) => {
+const MenuList: React.FC<MenuListProps> = ({ className, routeItems, history }) => {
   const [, dispatch] = GlobalState.useContainer();
 
   return (
     <Menu
       theme="dark"
-      selectedKeys={[window.location.pathname]}
+      selectedKeys={[history.location.pathname]}
       mode="horizontal"
       className={className}
     >
@@ -49,4 +50,4 @@ const MenuList: React.FC<MenuListProps> = ({ className, routeItems }) => {
   );
 };
 
-export default MenuList;
+export default withRouter(MenuList);

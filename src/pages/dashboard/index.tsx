@@ -1,7 +1,7 @@
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import { Card, Col, Progress, Row, Statistic } from "antd";
 import styles from "./index.module.less";
-import React, { useRef } from "react";
+import React from "react";
 import ApiCallCard from "./components/apiCallCard";
 
 interface DashboardProps {}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
 import style from "./index.module.less";
 import useSWR from "swr";
@@ -21,7 +21,15 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [, dispatch] = GlobalState.useContainer();
   const { pathname } = history.location;
-  const parentItem = getParentByPath(pathname, routeItems);
+  const [openKeys, setOpenKeys] = useState<string[]>([]); // 展开的列表
+
+  useEffect(() => {
+    // 路径更新时，同时更新展开的二级目录
+    console.log('update');
+    const parentItem = getParentByPath(pathname, routeItems);
+    const parentKeys = parentItem ? [parentItem.path] : [];
+    setOpenKeys((prevKeys) => prevKeys.concat(parentKeys));
+  }, [pathname, routeItems]);
 
   return (
     <Sider
@@ -43,8 +51,12 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
       ) : (
         <Menu
           theme="dark"
-          defaultSelectedKeys={[pathname]}
-          defaultOpenKeys={[parentItem?.path ?? ""]}
+          selectedKeys={[pathname]} // TODO: 修复默认跳转时无法正确展开的细节问题
+          openKeys={openKeys}
+          onOpenChange={(keys) => {
+            console.log(keys);
+            setOpenKeys(keys as string[])
+          }}
           mode="inline"
         >
           {routeItems.map((menu) => {
