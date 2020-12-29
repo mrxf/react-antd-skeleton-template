@@ -1,7 +1,8 @@
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import { Card, Col, Progress, Row, Statistic } from "antd";
 import styles from "./index.module.less";
-import React from "react";
+import React, { useRef } from "react";
+import ApiCallCard from "./components/apiCallCard";
 
 interface DashboardProps {}
 
@@ -38,7 +39,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
         </Card>
       </Col>
       <Col span={8}>
-        <Card>
+        <Card className={styles.equalHeightCard}>
           <Statistic title="当前项目开发进度" value={66} suffix="%" />
           <Progress percent={66} status="active" />
           <Row gutter={16}>
@@ -58,6 +59,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
             </Col>
           </Row>
         </Card>
+      </Col>
+      <Col span={8}>
+        <ApiCallCard />
       </Col>
     </Row>
   );
