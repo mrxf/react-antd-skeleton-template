@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import echarts from "echarts/lib/echarts";
 import { EChartsFullOption } from "echarts/lib/option";
+import { useDebounce, useSize } from "ahooks";
 
 /**
  * @param chartRef Echarts挂载元素
@@ -11,6 +12,10 @@ function useECharts(
   config: EChartsFullOption
 ) {
   const chartInstance = useRef<echarts.EChartsType | null>(null);
+
+  // 容器尺寸变化时，刷新Echarts尺寸
+  const size = useSize(chartRef);
+  const debouncedSize = useDebounce(size, { wait: 500 });
 
   useEffect(() => {
     function renderChart() {
@@ -30,10 +35,10 @@ function useECharts(
 
   useEffect(() => {
     return () => {
-      // 页面/实例 unmount阶段销毁Echarts实例
+      // unmount阶段销毁Echarts实例
       chartInstance.current?.dispose();
     };
-  }, [chartInstance]);
+  }, [chartInstance, debouncedSize]);
 
   return { chartInstance };
 }
