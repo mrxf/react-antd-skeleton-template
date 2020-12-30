@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { GlobalState } from "src/components/globalState";
 import { IRouteItem } from "src/constants/interfaces/IRouterItem";
@@ -12,13 +12,23 @@ interface MenuListProps extends RouteComponentProps {
   routeItems: IRouteItem[];
 }
 
-const MenuList: React.FC<MenuListProps> = ({ className, routeItems, history }) => {
+const MenuList: React.FC<MenuListProps> = ({
+  className,
+  routeItems,
+  history,
+}) => {
   const [, dispatch] = GlobalState.useContainer();
+  const { pathname } = history.location;
+
+  useEffect(() => {
+    // pathname改变时，自动更新面包屑路由信息
+    dispatch({ type: "update_route_by_path", pathname });
+  }, [pathname, dispatch]);
 
   return (
     <Menu
       theme="dark"
-      selectedKeys={[history.location.pathname]}
+      selectedKeys={[pathname]}
       mode="horizontal"
       className={className}
     >
@@ -40,11 +50,11 @@ const MenuList: React.FC<MenuListProps> = ({ className, routeItems, history }) =
                 </>
               }
             >
-              {menu?.routes.map((v) => getMenuItem(v, dispatch))}
+              {menu?.routes.map((v) => getMenuItem(v))}
             </SubMenu>
           );
         }
-        return getMenuItem(menu, dispatch);
+        return getMenuItem(menu);
       })}
     </Menu>
   );

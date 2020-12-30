@@ -32,6 +32,11 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
     setOpenKeys((prevKeys) => Array.from(new Set(prevKeys.concat(parentKeys))));
   }, [pathname, routeItems]);
 
+  useEffect(() => {
+    // pathname改变时，自动更新面包屑路由信息
+    dispatch({ type: "update_route_by_path", pathname });
+  }, [pathname, dispatch]);
+
   return (
     <Sider
       className={`${style.side} full-skeleton`}
@@ -52,7 +57,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
       ) : (
         <Menu
           theme="dark"
-          selectedKeys={[pathname]} // TODO: 修复默认跳转时无法正确展开的细节问题
+          selectedKeys={[pathname]}
           openKeys={openKeys}
           onOpenChange={(keys) => setOpenKeys(keys as string[])}
           mode="inline"
@@ -76,11 +81,11 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
                     </>
                   }
                 >
-                  {menu?.routes.map((v) => getMenuItem(v, dispatch))}
+                  {menu?.routes.map((v) => getMenuItem(v))}
                 </SubMenu>
               );
             }
-            return getMenuItem(menu, dispatch);
+            return getMenuItem(menu);
           })}
         </Menu>
       )}
