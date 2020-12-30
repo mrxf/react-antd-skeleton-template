@@ -1,7 +1,7 @@
 import { Card, Col, Row, Statistic } from "antd";
 import React, { useRef } from "react";
 import styles from "../index.module.less";
-import useECharts from "../hooks/useEcharts";
+import useECharts from "src/hooks/useEcharts";
 import "echarts/lib/component/tooltip";
 import "echarts/lib/chart/line";
 import "echarts/lib/coord/cartesian/Grid"; // 目前lineChart中存在问题需要引入这俩解决
