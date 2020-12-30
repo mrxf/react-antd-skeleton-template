@@ -11,31 +11,39 @@ import { EChartsFullOption } from "echarts/lib/option";
 
 interface ApiCallCardProps {}
 
+const options: EChartsFullOption = {
+  tooltip: {
+    trigger: "axis",
+  },
+  xAxis: {
+    type: "category",
+    data: [
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六",
+      "星期日",
+    ],
+    show: false,
+  },
+  yAxis: {
+    type: "value",
+    min: 800,
+    show: false,
+    max: 1200,
+  },
+  series: [
+    {
+      data: [920, 932, 901, 934, 980, 916, 1087],
+      type: "line",
+    },
+  ],
+};
+
 const ApiCallCard: React.FC<ApiCallCardProps> = () => {
   const lineChartRef = useRef<HTMLDivElement | null>(null);
-
-  const options: EChartsFullOption = {
-    tooltip: {
-      trigger: "axis",
-    },
-    xAxis: {
-      type: "category",
-      data: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
-      show: false,
-    },
-    yAxis: {
-      type: "value",
-      min: 800,
-      show: false,
-      max: 1200,
-    },
-    series: [
-      {
-        data: [920, 932, 901, 934, 980, 916, 1087],
-        type: "line",
-      },
-    ],
-  };
 
   useECharts(lineChartRef, options);
 
