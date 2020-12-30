@@ -31,14 +31,12 @@ function useECharts(
       chartInstance.current.setOption(config);
     }
     renderChart();
-  }, [chartRef, config]);
 
-  useEffect(() => {
     return () => {
       // unmount阶段销毁Echarts实例
       chartInstance.current?.dispose();
     };
-  }, [chartInstance, debouncedSize]);
+  }, [chartRef, config, debouncedSize]);
 
   return { chartInstance };
 }
