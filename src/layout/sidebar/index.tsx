@@ -25,10 +25,11 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
 
   useEffect(() => {
     // 路径更新时，同时更新展开的二级目录
-    console.log('update');
     const parentItem = getParentByPath(pathname, routeItems);
     const parentKeys = parentItem ? [parentItem.path] : [];
-    setOpenKeys((prevKeys) => prevKeys.concat(parentKeys));
+    // 更新展开时，将之前展开的路径也一并合并进来，防止出现只展开一个的情况
+    // 使用去重的目的是，防止出现重复展开路径的情况，导致折叠起来的时候，需要两次的情况
+    setOpenKeys((prevKeys) => Array.from(new Set(prevKeys.concat(parentKeys))));
   }, [pathname, routeItems]);
 
   return (
@@ -53,10 +54,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
           theme="dark"
           selectedKeys={[pathname]} // TODO: 修复默认跳转时无法正确展开的细节问题
           openKeys={openKeys}
-          onOpenChange={(keys) => {
-            console.log(keys);
-            setOpenKeys(keys as string[])
-          }}
+          onOpenChange={(keys) => setOpenKeys(keys as string[])}
           mode="inline"
         >
           {routeItems.map((menu) => {

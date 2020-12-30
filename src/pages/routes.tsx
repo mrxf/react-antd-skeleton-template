@@ -21,7 +21,7 @@ export const routeItems: IRouteItem[] = [
     exact: true,
     hide: true,
     name: "首页",
-    children: <Redirect to="/dashboard" />,
+    children: <Redirect to="/tables/basic" />,
   },
   {
     path: "/dashboard",
