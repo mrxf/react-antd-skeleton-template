@@ -7,6 +7,7 @@ const instance = axios.create({
   paramsSerializer: (params) => {
     return stringify(params, undefined, undefined, { encodeURIComponent });
   },
+  baseURL: process.env.REACT_APP_API_SERVER,
   responseType: "json",
 });
 
