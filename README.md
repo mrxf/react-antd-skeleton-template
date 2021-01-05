@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# React Antd 后台系统骨架屏模板
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+在线DEMO地址: https://starter.thisjs.com/
+
+* 两种布局方式
+  * 上下结构
+  * 左右结构
+* 骨架屏加载
+* 配置化路由
+* Suspense/Lazy基于路由代码拆分
+
+> **切换方式：** 右上角下拉，关于中切换布局方式
+
+![](https://cdn.thisjs.com/blog_images/20210105204333.png)
+
+![](https://cdn.thisjs.com/blog_images/20210105204952.png)
 
 ## Available Scripts
 
