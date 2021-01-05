@@ -15,6 +15,8 @@ function useECharts(
 
   // 容器尺寸变化时，刷新Echarts尺寸
   const size = useSize(chartRef);
+
+  // FIXME: 修复由于debounce导致图表初始化时重复创建的问题
   const debouncedSize = useDebounce(size, { wait: 500 });
 
   useEffect(() => {
