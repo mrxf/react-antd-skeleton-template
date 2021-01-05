@@ -29,7 +29,7 @@ const BasicForm: React.FC<BasicFormProps> = () => {
 
   /** 依赖query的变化，发起查询请求 */
   const { isValidating, data, mutate } = useSWR(
-    ["/mock/game/list", query],
+    ["/antd/game/list", query],
     (url, params) => http.get(url, { params })
   );
 

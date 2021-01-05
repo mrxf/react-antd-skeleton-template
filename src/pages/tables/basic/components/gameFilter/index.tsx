@@ -40,7 +40,7 @@ const GameFilter: React.FC<GameFilterProps> = ({
   const shoudInitForm = useRef<boolean>(true);
   const [form] = Form.useForm();
   const { data: companyRes, isValidating: isValidatingCompany } = useSWR(
-    "/mock/company/list"
+    "/antd/company/list"
   );
   /** 表单完成事件，处理一些特殊数据后提交 */
   const onFinish = useCallback(() => {
