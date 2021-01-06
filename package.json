@@ -42,7 +42,7 @@
     "build": "craco build",
     "test": "craco test",
     "mock-server": "node_modules/.bin/json-server --delay 300 -p 4001 -r ./mock/routes.json -w ./mock/configs.js",
-    "dev": "concurrently \"npm start\" \"npm run mock-server\"",
+    "dev": "concurrently \"npm:start\" \"npm:mock-server\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
