@@ -11,9 +11,9 @@
 
 > **切换方式：** 右上角下拉，关于中切换布局方式
 
-![](https://cdn.thisjs.com/blog_images/ezgif-7-b4791aa3bf9b.gif)
+![left-right-layout](docs/images/l-r-loading.gif)
 
-![](https://cdn.thisjs.com/blog_images/ezgif-7-5089fa102f65.gif)
+![top-bottom-layout](docs/images/t-b-loading.gif)
 
 ## Available Scripts
 
