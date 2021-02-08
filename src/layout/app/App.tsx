@@ -35,7 +35,7 @@ function App() {
           ) : (
             <SiderBar routeItems={routeItems} />
           )}
-          <Layout>
+          <Layout className="content-layout">
             {globaleState.layoutMod === "TOP_BOTTOM" ? (
               // 上下结构时只有面包屑
               <HeadBreadcrumb />
