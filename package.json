@@ -40,6 +40,8 @@
   },
   "scripts": {
     "start": "craco start",
+    "react-spring-issue-1078": "find node_modules -path \\*@react-spring/\\*/package.json -exec sed -i.bak 's/\"sideEffects\": false/\"sideEffects\": true/g' {} +",
+    "postinstall": "npm run react-spring-issue-1078",
     "build": "craco build",
     "test": "craco test",
     "mock-server": "node_modules/.bin/json-server --delay 300 -p 4001 -r ./mock/routes.json -w ./mock/configs.js",
