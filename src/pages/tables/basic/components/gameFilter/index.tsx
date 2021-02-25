@@ -25,6 +25,8 @@ interface GameFilterProps {
   onSearch?: (result: IResult) => void;
   onReset?: () => void;
   initialValues?: IResult;
+  searchText?: string;
+  disabled?: boolean;
 }
 
 const layout = {
@@ -36,6 +38,8 @@ const GameFilter: React.FC<GameFilterProps> = ({
   onSearch,
   onReset,
   initialValues,
+  searchText = "搜索",
+  disabled = false,
 }) => {
   const shoudInitForm = useRef<boolean>(true);
   const [form] = Form.useForm();
@@ -119,8 +123,13 @@ const GameFilter: React.FC<GameFilterProps> = ({
       <Row>
         <Col span={24}>
           <Space>
-            <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>
-              查询
+            <Button
+              disabled={disabled}
+              type="primary"
+              htmlType="submit"
+              icon={<SearchOutlined />}
+            >
+              {searchText}
             </Button>
             <Button htmlType="reset" onClick={onFormReset}>
               重置

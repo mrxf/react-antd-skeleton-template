@@ -2,6 +2,7 @@ import { Badge, Card, Table, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { isEqual, omit } from "lodash";
 import React, { useMemo } from "react";
+import { useValuePool } from "src/hooks/useValuePool";
 import { http } from "src/utils/http";
 import useSWR from "swr";
 import {
@@ -32,6 +33,8 @@ const BasicForm: React.FC<BasicFormProps> = () => {
     ["/antd/game/list", query],
     (url, params) => http.get(url, { params })
   );
+
+  const { data: valuePool } = useValuePool();
 
   const tableColumn: ColumnsType<any> = useMemo(() => {
     return [
@@ -87,6 +90,8 @@ const BasicForm: React.FC<BasicFormProps> = () => {
               mutate();
             }
           }}
+          searchText={valuePool.searchText}
+          disabled={ !valuePool.canSearch }
         />
       </Card>
       <Card>
