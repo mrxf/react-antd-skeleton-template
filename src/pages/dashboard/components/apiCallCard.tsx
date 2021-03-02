@@ -49,7 +49,7 @@ const ApiCallCard: React.FC<ApiCallCardProps> = () => {
 
   return (
     <Card>
-      <span className="ant-statistic-title">接口调用次数</span>
+      <span className="ksyun-statistic-title">接口调用次数</span>
       <div
         style={{ width: "100%", height: 50, marginTop: 16 }}
         ref={lineChartRef}

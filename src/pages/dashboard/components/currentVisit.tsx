@@ -24,8 +24,8 @@ const CurrentVist: React.FC<CurrentVistProps> = () => {
 
   return (
     <Card className={styles.equalHeightCard}>
-      <span className="ant-statistic-title">今日访问总数</span>
-      <animated.div className="ant-statistic-content">
+      <span className="ksyun-statistic-title">今日访问总数</span>
+      <animated.div className="ksyun-statistic-content">
         {props.number.to((v) => Math.floor(v as number))}
       </animated.div>
 
