@@ -1,4 +1,5 @@
 const CracoLessPlugin = require("craco-less");
+const ksyunTheme = require("./themes/ksyun");
 
 module.exports = {
   plugins: [
@@ -7,7 +8,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            // modifyVars: { '@primary-color': '#1DA57A' },
+            modifyVars: ksyunTheme,
             javascriptEnabled: true,
           },
         },

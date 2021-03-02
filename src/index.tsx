@@ -24,7 +24,7 @@ ReactDOM.render(
           requestMethod: http,
         }}
       >
-        <ConfigProvider locale={zhCN}>
+        <ConfigProvider locale={zhCN} prefixCls="ksyun">
           <GlobalStateProvider
             value={{
               breadCrumbRoute: getRouteArrayByPath(window.location.pathname),
