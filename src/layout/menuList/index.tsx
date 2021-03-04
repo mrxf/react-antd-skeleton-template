@@ -17,7 +17,7 @@ const MenuList: React.FC<MenuListProps> = ({
   routeItems,
   history,
 }) => {
-  const [, dispatch] = GlobalState.useContainer();
+  const [globaleState, dispatch] = GlobalState.useContainer();
   const { pathname } = history.location;
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const MenuList: React.FC<MenuListProps> = ({
 
   return (
     <Menu
-      theme="dark"
+      theme={globaleState.theme}
       selectedKeys={[pathname]}
       mode="horizontal"
       className={className}

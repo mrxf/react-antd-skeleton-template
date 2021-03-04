@@ -4,10 +4,12 @@ import { getRouteArrayByPath } from "src/utils/getRouteByPath";
 
 /** 页面布局类型 */
 export type LayoutMod = "LEFT_RIGHT" | "TOP_BOTTOM"; // "TOP_BOTTOM"-上下结构  "LEFT_RIGHT"-左右结构
+export type ThemeType = "dark" | "light";
 export interface IGlobalState {
   title: string; // 全局当前的标题
   breadCrumbRoute: Route[]; // 当前面包屑的路由信息
   layoutMod: LayoutMod; // 全局布局样式
+  theme: ThemeType; // 全局主题
 }
 
 export type IGlobalStateAction =
@@ -28,6 +30,11 @@ export type IGlobalStateAction =
       /** 更新页面布局模式 */
       type: "update_layout";
       value: LayoutMod;
+    }
+  | {
+      /** 更新主题 */
+      type: "update_theme";
+      value: ThemeType;
     };
 
 const layoutStorageKey = "LAYOUT_MOD";
@@ -44,7 +51,9 @@ const reducer: Reducer<IGlobalState, IGlobalStateAction> = (state, action) => {
     case "update_layout":
       // 更新layout的时候，将数据存储到Storage中，以便下次使用
       localStorage.setItem(layoutStorageKey, action.value);
-      return { ...state, layoutMod: action.value }
+      return { ...state, layoutMod: action.value };
+    case "update_theme":
+      return { ...state, theme: action.value };
     default:
       return state;
   }
@@ -52,11 +61,14 @@ const reducer: Reducer<IGlobalState, IGlobalStateAction> = (state, action) => {
 
 /** 全部可用layoutMods */
 export const layoutMods: LayoutMod[] = ["LEFT_RIGHT", "TOP_BOTTOM"];
+/** 全局可用主题选项 */
+export const ThemeList: ThemeType[] = ["dark", "light"];
 
 /** 初始全局数据 */
 export const initValue: IGlobalState = {
   title: "",
   breadCrumbRoute: [],
+  theme: "dark",
   layoutMod: layoutMods.includes(
     localStorage.getItem(layoutStorageKey) as LayoutMod
   )

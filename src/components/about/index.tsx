@@ -1,7 +1,7 @@
 import { Form, Radio } from "antd";
 import { RadioChangeEvent } from "antd/lib/radio";
 import React, { useCallback } from "react";
-import { layoutMods } from "src/hooks/useGlobalState";
+import { layoutMods, ThemeList } from "src/hooks/useGlobalState";
 import { GlobalState } from "../globalState";
 
 interface AboutProps {}
@@ -12,6 +12,14 @@ const About: React.FC<AboutProps> = () => {
   const onChangeLayout = useCallback(
     ({ target: { value } }: RadioChangeEvent) => {
       dispatch({ type: "update_layout", value });
+    },
+    [dispatch]
+  );
+
+  /** 更新主题 */
+  const onChangeTheme = useCallback(
+    ({ target: { value } }: RadioChangeEvent) => {
+      dispatch({ type: "update_theme", value });
     },
     [dispatch]
   );
@@ -31,6 +39,19 @@ const About: React.FC<AboutProps> = () => {
           onChange={onChangeLayout}
         >
           {layoutMods.map((item) => (
+            <Radio.Button key={item} value={item}>
+              {item}
+            </Radio.Button>
+          ))}
+        </Radio.Group>
+      </Form.Item>
+      <Form.Item label="主题配色">
+        <Radio.Group
+          value={globalState.theme}
+          buttonStyle="solid"
+          onChange={onChangeTheme}
+        >
+          {ThemeList.map((item) => (
             <Radio.Button key={item} value={item}>
               {item}
             </Radio.Button>
