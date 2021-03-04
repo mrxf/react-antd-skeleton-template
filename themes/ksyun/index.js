@@ -11,6 +11,7 @@ module.exports = {
   "text-color-secondary": "fade(#000, 45%)",
   "border-color-base": "#cccccc",
   "border-color-split": "#dedede",
+  "layout-header-background": "#262626",
   "layout-body-background": "#fafafa",
   "font-size-base": "12px",
   "border-radius-sm": "0",

@@ -8,7 +8,9 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: ksyunTheme,
+            modifyVars: {
+              "ant-prefix": "ksyun",
+            },
             javascriptEnabled: true,
           },
         },
@@ -31,4 +33,7 @@ module.exports = {
       },
     },
   ],
+  devServer: {
+    hot: false,
+  },
 };
