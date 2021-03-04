@@ -5,13 +5,11 @@ import { get } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
 import useSWR from "swr";
 import About from "../about";
+import { GlobalState } from "../globalState";
 import style from "./index.module.less";
 
-interface UserInfoProps {
-  theme?: "light" | "dark";
-}
-
-const UserInfo: React.FC<UserInfoProps> = ({ theme = "dark" }) => {
+const UserInfo: React.FC = () => {
+  const [globaleState] = GlobalState.useContainer();
   const { isValidating: isLogin, data: userData } = useSWR("/antd/userinfo");
   const [shouldAboutShow, setShouldAboutShow] = useState<boolean>(false);
 
@@ -46,8 +44,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme = "dark" }) => {
         <Dropdown overlay={infoMenus}>
           <div
             className={classNames(style.username, {
-              [style.__dark]: theme === "dark",
-              [style.__light]: theme === "light",
+              [style.__dark]:
+                globaleState.theme === "dark" &&
+                globaleState.layoutMod !== "LEFT_RIGHT",  // 左右模式用户名样式没有变动
+              [style.__light]: globaleState.theme === "light",
             })}
           >
             <Avatar

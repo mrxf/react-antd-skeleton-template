@@ -8,6 +8,7 @@ import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { GlobalState } from "src/components/globalState";
 import { getParentByPath } from "src/utils/getParentByPath";
 import { getMenuItem } from "src/utils/getMenuItem";
+import classNames from "classnames";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -22,6 +23,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
   const [, dispatch] = GlobalState.useContainer();
   const { pathname } = history.location;
   const [openKeys, setOpenKeys] = useState<string[]>([]); // 展开的列表
+  const [globaleState] = GlobalState.useContainer();
 
   useEffect(() => {
     // 路径更新时，同时更新展开的二级目录
@@ -44,8 +46,14 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
       collapsible
       collapsed={collapsed}
       onCollapse={setCollapsed}
+      theme={ globaleState.theme }
     >
-      <div className={style.logo}>
+      <div
+        className={classNames(style.logo, {
+          [style.themeLight]: globaleState.theme === "light",
+          [style.themeDark]: globaleState.theme === "dark",
+        })}
+      >
         {!collapsed ? (
           <Link to="/">
             <h1>{process.env.REACT_APP_SITE_NAME}</h1>
@@ -56,7 +64,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ routeItems, history }) => {
         <MenuSkeleton />
       ) : (
         <Menu
-          theme="dark"
+          theme={ globaleState.theme }
           selectedKeys={[pathname]}
           openKeys={openKeys}
           onOpenChange={(keys) => setOpenKeys(keys as string[])}

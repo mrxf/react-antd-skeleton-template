@@ -8,7 +8,7 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <div className={styles.header}>
       <HeadBreadcrumb />
-      <UserInfo theme="light"/>
+      <UserInfo/>
     </div>
   );
 };

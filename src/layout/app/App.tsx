@@ -12,6 +12,7 @@ import ContentSkeleton from "src/components/contentSkeleton";
 import { routeItems } from "src/pages/routes";
 import Header from "../header";
 import { GlobalState } from "src/components/globalState";
+import classNames from "classnames";
 
 const { Content, Header: LayoutHeader } = Layout;
 
@@ -29,7 +30,11 @@ function App() {
         <Layout className="app-container ">
           {globaleState.layoutMod === "TOP_BOTTOM" ? (
             // 上下结构
-            <LayoutHeader className="topNav">
+            <LayoutHeader
+              className={classNames("topNav", {
+                themeLight: globaleState.theme === "light",
+              })}
+            >
               <TopNav routeItems={routeItems} />
             </LayoutHeader>
           ) : (
