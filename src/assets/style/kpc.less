@@ -19,8 +19,14 @@
 @layout-body-background: #fafafa;
 @layout-trigger-background: @layout-header-background;
 
+@layout-sider-background-light: #e5e5e9;
+@layout-trigger-background-light: @layout-sider-background-light;
+
 // 目录配置
-@menu-dark-inline-submenu-bg: #000;
+@menu-dark-inline-submenu-bg: red;
+@menu-bg: @layout-sider-background-light;
+@menu-inline-submenu-bg: red;
+@menu-item-active-bg: @primary-color;
 
 @font-size-base: 12px;
 @border-radius-sm: 0;
@@ -32,7 +38,6 @@
 @shadow-color: #000000;
 
 // 按钮配置
-@btn-default-bg: #fafafa;
 @btn-default-border: #dedede;
 
 // 表格配置
@@ -45,7 +50,8 @@
 
 // FORM组件配置
 @switch-height: 18px;
-@switch-color: @success-color;
+@switch-color: white;
+@switch-bg: @primary-color;
 @switch-shadow-color: fade(#00230b, 20%);
 @breadcrumb-base-color: @text-color;
 @breadcrumb-last-item-color: @text-color-secondary;
@@ -75,3 +81,40 @@
 @alert-warning-bg-color: #fff7db;
 @alert-error-border-color: #fcebea;
 @alert-error-bg-color: #fcebea;
+
+@animation-duration-slow: 0.15s; // Modal
+@animation-duration-base: 0.1s;
+@animation-duration-fast: 0.05s; // Tooltip
+
+.@{ant-prefix} {
+  // 目录选中时的颜色
+  &-menu-item-selected {
+    a {
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  // switch样式更新
+  &-switch {
+    padding: 9px;
+    background-color: white;
+    border: 1px solid @border-color-base;
+
+    // 选中与非选中控制按钮的样式不同
+    &-handle {
+      &::before {
+        background-color: @border-color-base;
+      }
+    }
+    &-checked {
+      border: 1px solid @primary-color;
+      .@{ant-prefix}-switch-handle {
+        &::before {
+          background-color: @primary-color;
+        }
+      }
+    }
+  }
+}

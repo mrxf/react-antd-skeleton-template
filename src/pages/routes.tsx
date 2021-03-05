@@ -30,6 +30,12 @@ export const routeItems: IRouteItem[] = [
     component: loader("dashboard"),
   },
   {
+    path: "/show",
+    name: "组件展示",
+    icon: <CloudServerOutlined />,
+    component: loader("show"),
+  },
+  {
     path: "/tables",
     name: "表格",
     icon: <TableOutlined />,
