@@ -68,12 +68,12 @@ export const ThemeList: ThemeType[] = ["dark", "light"];
 export const initValue: IGlobalState = {
   title: "",
   breadCrumbRoute: [],
-  theme: "dark",
+  theme: "light",
   layoutMod: layoutMods.includes(
     localStorage.getItem(layoutStorageKey) as LayoutMod
   )
     ? (localStorage.getItem(layoutStorageKey) as LayoutMod)
-    : "TOP_BOTTOM", // 从本地存储中获取布局模式，默认使用上下结构
+    : "LEFT_RIGHT", // 从本地存储中获取布局模式，默认使用上下结构
 };
 
 /**

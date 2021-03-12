@@ -1,5 +1,5 @@
 const CracoLessPlugin = require("craco-less");
-const ksyunTheme = require("./themes/ksyun");
+const { ksyunTheme } = require("@ksyun/antd-ksyun-theme");
 
 module.exports = {
   plugins: [
@@ -9,7 +9,8 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: {
-              "ant-prefix": "ksyun",
+              "@ant-prefix": "ksyun",
+              ...ksyunTheme,
             },
             javascriptEnabled: true,
           },
@@ -33,7 +34,4 @@ module.exports = {
       },
     },
   ],
-  devServer: {
-    hot: false,
-  },
 };

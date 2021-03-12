@@ -8,14 +8,13 @@ const BreadCrumbShow: React.FC = () => {
       <Breadcrumb>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="">Application Center</a>
+          <span>Application Center</span>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="">Application List</a>
+          <span>Application List</span>
         </Breadcrumb.Item>
         <Breadcrumb.Item>An Application</Breadcrumb.Item>
       </Breadcrumb>
-      ,
     </div>
   );
 };
