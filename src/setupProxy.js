@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     "/antd",
     createProxyMiddleware({
-      target: "https://yapi.thisjs.com/mock/21/",
+      target: "https://yapi.thisjs.com/mock/11/",
       secure: false,
       changeOrigin: true,
     })
